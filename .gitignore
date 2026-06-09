@@ -1,0 +1,53 @@
+# ── Dependencies ──────────────────────────────────────────────────────────────
+node_modules/
+/node_modules
+./node_modules
+ 
+# ── Database ──────────────────────────────────────────────────────────────────
+database.sqlite
+database.sqlite-shm
+database.sqlite-wal
+*.sqlite
+*.db
+
+# ── Ban-list — NEVER commit these ─────────────────────────────────────────────
+ban-list.json
+INTEGRATION.md
+server-changes.md
+
+# ── Environment / secrets — NEVER commit these ────────────────────────────────
+.env
+.env.*
+!.env.example
+ 
+# ── Test / scratch scripts ────────────────────────────────────────────────────
+test.resend.js
+test-captcha.js
+ 
+# ── Docker / deployment ───────────────────────────────────────────────────────
+portainer-compose.yaml
+docker-compose.override.yml
+ 
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+ 
+# ── OS / editor ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+ 
+# ── Build artefacts ───────────────────────────────────────────────────────────
+dist/
+build/
+
+# ── Vite ──────────────────────────────────────────────────────────────────────
+.vite/
+
+# ── Other ─────────────────────────────────────────────────────────────────────
+pixel-history.json
+docs/GET-PIXEL-HISTORY.md
