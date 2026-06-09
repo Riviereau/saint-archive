@@ -1,5 +1,5 @@
-# Sainte-Corruption
-A website to archive every corruption scandals in Québec.
+# Sainte-Archive
+A website to archive every corruption scandals, history and lost medias in Quebec and in France.
 =======
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
