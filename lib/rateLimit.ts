@@ -23,7 +23,7 @@
 import { RateLimitState, DAILY_POST_LIMIT } from "@/types";
 
 // The key we use to store the rate limit state in localStorage
-const RATE_LIMIT_KEY = "sa_rate_limit"; // "sa" = Sainte-Archive
+const RATE_LIMIT_KEY = "sa_rate_limit"; // "sa" = Saint-Archive
 
 /*
   Gets today's date as a string: "2025-06-09"
