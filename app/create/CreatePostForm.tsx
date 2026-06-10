@@ -26,6 +26,8 @@ import { CreatePostInput } from "@/types";
 import { canPostToday, incrementPostCount } from "@/lib/rateLimit";
 import { slugify } from "@/lib/utils";
 
+import Link from "next/link";
+
 /*
   Our form validation rules.
   Each field has a min/max length and a required flag.
@@ -375,9 +377,9 @@ export function CreatePostForm() {
           {isLoading ? "Publication…" : "Publier l'archive"}
         </button>
 
-        <a href="/" className="btn btn--ghost btn--lg">
+        <Link href="/" className="btn btn--ghost btn--lg">
           Annuler
-        </a>
+        </Link>
 
         {/* Loading indicator */}
         {isLoading && (
