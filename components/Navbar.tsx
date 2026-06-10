@@ -24,7 +24,7 @@ export function Navbar() {
           {/* --- Logo --- */}
           <Link href="/" className="navbar__logo">
             <span className="navbar__logo-icon" aria-hidden="true">✝</span>
-            Sainte-Archive
+            Saint-Archive
           </Link>
 
           {/* --- Search bar --- */}

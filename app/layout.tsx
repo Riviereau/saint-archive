@@ -105,10 +105,10 @@ export default function RootLayout({
           <div className="container">
             <div className="footer__inner">
               <p className="footer__tagline">
-                Sainte-Archive — Mémoire collective du Québec et de la France
+                Saint-Archive, la mémoire collective du Québec et de la France
               </p>
               <p className="footer__tagline">
-                Contenu soumis par la communauté — vérifiez toujours les sources
+                Contenu soumis par la communauté, vérifiez toujours les sources
               </p>
             </div>
           </div>

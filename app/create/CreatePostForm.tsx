@@ -287,7 +287,7 @@ export function CreatePostForm() {
           value={region}
           onChange={(e) => setRegion(e.target.value as CreatePostInput["region"])}
         >
-          <option value="quebec">🇨🇦 Québec</option>
+          <option value="quebec">⚜️ Québec</option>
           <option value="france">🇫🇷 France</option>
           <option value="other">🌍 Autre</option>
         </select>

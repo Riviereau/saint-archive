@@ -40,7 +40,7 @@ interface FlairPickerProps {
   onChange: (ids: string[]) => void;
   /*
     Maximum number of flairs the user can select.
-    Defaults to 3 (see the destructuring default below).
+    Defaults to 5 (see the destructuring default below).
   */
   maxSelect?: number;
 }
@@ -48,7 +48,7 @@ interface FlairPickerProps {
 export function FlairPicker({
   selectedIds,
   onChange,
-  maxSelect = 3,
+  maxSelect = 5,
 }: FlairPickerProps) {
 
   /*
