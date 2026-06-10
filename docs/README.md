@@ -26,6 +26,11 @@ sainte-archive/
 │       └── posts/
 │           └── route.ts          ← API endpoint POST/GET /api/posts
 │
+├── docs/    
+│   ├── AGENTS.md                 ← Avertissement avec les agents IA
+│   ├── CLAUDE.md                 ← Claude l'IA
+│   └── README.md                 ← La description du repo sur GitHub
+│   
 ├── components/                   ← Composants React réutilisables
 │   ├── Navbar.tsx                ← Barre de navigation (Server Component)
 │   ├── FlairBadge.tsx            ← Badge flair individuel

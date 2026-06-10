@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      target: runner        # use "builder" stage to dev instead (see below)
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+
+  # ── Development override: run this instead for hot-reload ──────────────────
+  # docker compose -f docker-compose.yml -f docker-compose.dev.yml up

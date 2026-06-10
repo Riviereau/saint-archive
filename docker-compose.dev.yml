@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: .
+      target: deps          # only install deps; source is mounted below
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules   # keep container's node_modules isolated
+      - /app/.next          # keep .next cache inside container
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    command: npm run dev
+    restart: unless-stopped

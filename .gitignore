@@ -1,7 +1,5 @@
 # ── Dependencies ──────────────────────────────────────────────────────────────
-node_modules/
 /node_modules
-./node_modules
  
 # ── Database ──────────────────────────────────────────────────────────────────
 database.sqlite
@@ -21,7 +19,7 @@ server-changes.md
 !.env.example
  
 # ── Test / scratch scripts ────────────────────────────────────────────────────
-test.resend.js
+test-resend.js
 test-captcha.js
  
 # ── Docker / deployment ───────────────────────────────────────────────────────
@@ -49,5 +47,3 @@ build/
 .vite/
 
 # ── Other ─────────────────────────────────────────────────────────────────────
-pixel-history.json
-docs/GET-PIXEL-HISTORY.md

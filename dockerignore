@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+
+# Next.js build output
+.next
+out
+
+# Env files (never bake secrets into the image)
+.env
+.env.*
+!.env.example
+
+# Dev / tooling
+npm-debug.log*
+.DS_Store
+.git
+.gitignore
+*.md
+.eslintrc*
+.prettierrc*
+
+# Testing
+coverage
+__tests__
+*.test.ts
+*.spec.ts
+
+# Misc
+Dockerfile*
+docker-compose*
