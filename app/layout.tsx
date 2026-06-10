@@ -15,7 +15,35 @@
 */
 
 import type { Metadata } from "next";
+import { IM_Fell_English, Inter } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
+
+/*
+  Next.js has a built-in font system (next/font/google) that:
+  - Downloads fonts at BUILD TIME (no runtime Google request)
+  - Injects them automatically — no <link> tags needed
+  - Eliminates layout shift with automatic font-display: swap
+*/
+const imFellEnglish = IM_Fell_English({
+  weight: ["400"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-im-fell",   // exposes as a CSS variable
+});
+
+const inter = Inter({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+/*
+  Global CSS is imported directly here instead of via a <link> tag.
+  Next.js bundles and optimises it automatically.
+  Move your file from /public/css/globals.css to /app/globals.css
+  (or /styles/globals.css) and update the path below.
+*/
+import "@/styles/globals.css";
 
 /*
   "Metadata" is exported from layout/page files to set the
@@ -23,8 +51,8 @@ import { Navbar } from "@/components/Navbar";
 */
 export const metadata: Metadata = {
   title: {
-    default: "Sainte-Archive",
-    template: "%s — Sainte-Archive",  // "%s" is replaced by each page's title
+    default: "Saint-Archive",
+    template: "%s — Saint-Archive", // "%s" is replaced by each page's title
   },
   description:
     "Archive des scandales de corruption, de l'histoire et des médias perdus au Québec et en France.",
@@ -33,8 +61,12 @@ export const metadata: Metadata = {
     on social media (Facebook, Twitter, Discord, etc.)
   */
   openGraph: {
-    siteName: "Sainte-Archive",
-    locale: "fr_CA",
+    siteName: "Saint-Archive",
+    locale: "fr_CA",          // primary locale
+    alternateLocale: [        // additional locales
+      "fr_FR",
+      "en_US",
+    ],
     type: "website",
   },
 };
@@ -52,36 +84,11 @@ export default function RootLayout({
     /*
       lang="fr" tells browsers and screen readers the page is in French.
       This is important for accessibility!
+
+      The font variables are applied here so every element in the tree
+      can reference var(--font-im-fell) and var(--font-inter) in CSS.
     */
-    <html lang="fr">
-      <head>
-        {/*
-          Google Fonts — we load two fonts:
-          1. IM Fell English — old-style serif for headings
-          2. Inter — clean sans-serif for body text
-
-          "display=swap" means: use a system font while loading,
-          then swap in the custom font when it's ready. This prevents
-          invisible text during loading.
-        */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Inter:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-        {/*
-          We load our global CSS from the public folder.
-          In production, you'd typically import it in the component,
-          but loading from /public/css/ makes it easy to edit separately.
-        */}
-        <link rel="stylesheet" href="/css/globals.css" />
-      </head>
-
+    <html lang="fr" className={`${imFellEnglish.variable} ${inter.variable}`}>
       <body>
         {/* Navbar appears on every page */}
         <Navbar />
@@ -91,9 +98,7 @@ export default function RootLayout({
           screen readers "this is the main content of the page".
           It skips the navbar and footer for keyboard navigation.
         */}
-        <main id="main-content">
-          {children}
-        </main>
+        <main id="main-content">{children}</main>
 
         {/* Footer */}
         <footer className="footer">
