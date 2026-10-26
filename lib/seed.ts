@@ -1,0 +1,137 @@
+/*
+  lib/seed.ts — Articles de départ, créés au premier lancement
+  (data/posts.json est généré automatiquement s'il n'existe pas).
+*/
+
+import type { Post } from "@/types";
+
+export const SEED_POSTS: Post[] = [
+  {
+    id: "seed-charbonneau",
+    slug: "commission-charbonneau",
+    title: "Commission Charbonneau sur l'industrie de la construction",
+    excerpt:
+      "Commission d'enquête québécoise créée en 2011 pour examiner la collusion et la corruption dans l'octroi des contrats publics du secteur de la construction.",
+    content: `## Contexte
+
+La Commission d'enquête sur l'octroi et la gestion des contrats publics dans l'industrie de la construction, dite **Commission Charbonneau**, est créée par le gouvernement de Jean Charest en octobre 2011, après plusieurs années de reportages sur des soupçons de collusion dans les contrats publics.
+
+Elle porte le nom de sa présidente, la juge **France Charbonneau**.
+
+## Mandat
+
+La commission devait examiner l'existence de stratagèmes de collusion et de corruption dans l'octroi et la gestion de contrats publics du secteur de la construction, ainsi que les liens possibles avec le financement des partis politiques et l'infiltration du crime organisé.
+
+## Audiences publiques
+
+Les audiences télévisées débutent en 2012. Parmi les mécanismes décrits par les témoins :
+
+- des ententes entre entrepreneurs pour se partager des contrats
+- des versements de commissions à des intermédiaires et à des élus ou fonctionnaires municipaux
+- du financement politique illégal, notamment au niveau municipal
+- la présence du crime organisé dans certains chantiers
+
+## Rapport final
+
+Le rapport final est déposé à la fin de novembre 2015. Il contient 60 recommandations, dont plusieurs portent sur le financement des partis, la protection des lanceurs d'alerte et la surveillance des contrats publics.
+
+## Sources
+
+- Rapport final de la Commission d'enquête sur l'octroi et la gestion des contrats publics dans l'industrie de la construction (2015)
+- Archives de la Commission, site de la CEIC
+- Couverture médiatique des audiences, 2012-2015`,
+    region: "quebec",
+    flairIds: ["corruption", "politique", "source"],
+    author: "Anonyme",
+    createdAt: "2026-09-12T14:00:00.000Z",
+    updatedAt: "2026-09-12T14:00:00.000Z",
+    views: 0,
+    comments: [],
+    revisions: [
+      {
+        id: "seed-charbonneau-r1",
+        author: "Anonyme",
+        summary: "Création de l'article",
+        createdAt: "2026-09-12T14:00:00.000Z",
+      },
+    ],
+  },
+  {
+    id: "seed-octobre",
+    slug: "crise-d-octobre-1970",
+    title: "Crise d'octobre 1970",
+    excerpt:
+      "Série d'événements déclenchée par les enlèvements de James Richard Cross et de Pierre Laporte par le FLQ, et par l'application de la Loi sur les mesures de guerre au Québec.",
+    content: `## Déroulement
+
+Le 5 octobre 1970, des membres du Front de libération du Québec (FLQ) enlèvent à Montréal le diplomate britannique **James Richard Cross**. Le 8 octobre, le manifeste du FLQ est lu à la radio de Radio-Canada.
+
+Le 10 octobre, une autre cellule enlève **Pierre Laporte**, ministre du Travail et vice-premier ministre du gouvernement Bourassa.
+
+## Mesures de guerre
+
+Le 16 octobre, à la demande du gouvernement du Québec et de la Ville de Montréal, le gouvernement fédéral de Pierre Elliott Trudeau invoque la **Loi sur les mesures de guerre**. L'armée est déployée et les libertés civiles sont suspendues. Près de 500 personnes sont arrêtées, la plupart sans lien avec les enlèvements, et la majorité sera libérée sans accusation.
+
+## Dénouement
+
+Le corps de Pierre Laporte est retrouvé le 17 octobre. Le 3 décembre, James Richard Cross est libéré après des négociations; ses ravisseurs obtiennent un sauf-conduit vers Cuba.
+
+## Sources
+
+- Commission d'enquête sur des opérations policières en territoire québécois (commission Keable), 1981
+- Archives de Radio-Canada, dossier Crise d'octobre`,
+    region: "quebec",
+    flairIds: ["histoire", "politique", "source"],
+    author: "Anonyme",
+    createdAt: "2026-09-14T10:30:00.000Z",
+    updatedAt: "2026-09-14T10:30:00.000Z",
+    views: 0,
+    comments: [],
+    revisions: [
+      {
+        id: "seed-octobre-r1",
+        author: "Anonyme",
+        summary: "Création de l'article",
+        createdAt: "2026-09-14T10:30:00.000Z",
+      },
+    ],
+  },
+  {
+    id: "seed-clearstream",
+    slug: "affaire-clearstream",
+    title: "Affaire Clearstream",
+    excerpt:
+      "Affaire politico-judiciaire française née en 2004 de fausses listings de comptes bancaires attribués à des personnalités, dont Nicolas Sarkozy, et diffusés auprès de la justice.",
+    content: `## Origine
+
+En 2004, des lettres anonymes puis des listings sont envoyés au juge **Renaud Van Ruymbeke**, qui enquête sur des soupçons de commissions liées à la vente de frégates à Taïwan. Les documents désignent des personnalités comme titulaires de comptes dissimulés dans la chambre de compensation luxembourgeoise **Clearstream**.
+
+Les listings se révèlent par la suite en partie falsifiés.
+
+## Procès
+
+L'enquête met en cause notamment **Jean-Louis Gergorin** et **Imad Lahoud**, ainsi que **Dominique de Villepin**, poursuivi pour complicité de dénonciation calomnieuse. Nicolas Sarkozy, cité dans les listings, se constitue partie civile.
+
+En première instance, en 2010, Dominique de Villepin est relaxé. Sa relaxe est confirmée en appel en 2011.
+
+## Sources
+
+- Jugements du tribunal correctionnel de Paris (2010) et de la cour d'appel de Paris (2011)
+- Couverture de presse, 2004-2011`,
+    region: "france",
+    flairIds: ["politique", "justice", "a-verifier"],
+    author: "Anonyme",
+    createdAt: "2026-09-20T09:00:00.000Z",
+    updatedAt: "2026-09-20T09:00:00.000Z",
+    views: 0,
+    comments: [],
+    revisions: [
+      {
+        id: "seed-clearstream-r1",
+        author: "Anonyme",
+        summary: "Création de l'article",
+        createdAt: "2026-09-20T09:00:00.000Z",
+      },
+    ],
+  },
+];
