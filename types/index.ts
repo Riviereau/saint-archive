@@ -35,11 +35,37 @@ export interface Comment {
   createdAt: string; // ISO
 }
 
-export interface Revision {
+/** Une ligne de l'historique (sans le contenu de la version) */
+export interface RevisionMeta {
   id: string;
   author: string;
   summary: string;
   createdAt: string; // ISO
+}
+
+/** Copie complète d'un article à un instant donné */
+export interface Snapshot {
+  title: string;
+  excerpt: string;
+  content: string;
+  region: Region;
+  flairIds: string[];
+}
+
+export type Revision = RevisionMeta & Snapshot;
+
+/** Version allégée pour la liste d'accueil (sans le texte complet) */
+export interface PostSummary {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  region: Region;
+  flairIds: string[];
+  updatedAt: string; // ISO
+  views: number;
+  commentCount: number;
+  revisionCount: number;
 }
 
 export interface Post {
@@ -55,7 +81,7 @@ export interface Post {
   updatedAt: string; // ISO
   views: number;
   comments: Comment[];
-  revisions: Revision[];
+  revisions: RevisionMeta[]; // la plus récente en premier
 }
 
 /** Ce que le formulaire envoie à l'API */

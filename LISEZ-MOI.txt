@@ -1,0 +1,35 @@
+MISE À JOUR : BASE DE DONNÉES + HISTORIQUE / RÉTABLISSEMENT / SUPPRESSION
+
+1. Copiez le contenu de ce dossier PAR-DESSUS votre projet (remplacer les fichiers).
+   Nouveaux dossiers : prisma/, plus de nouveaux fichiers dans app/, components/, lib/.
+
+2. Créez le fichier .env à la racine (copiez .env.example) et choisissez votre ADMIN_KEY.
+   ATTENTION : si vous avez déjà un .env avec une DATABASE_URL (ancienne base),
+   gardez-le de côté et utilisez "file:./dev.db" pour ce projet.
+   Si vous avez déjà un prisma/schema.prisma, celui-ci le remplace.
+
+3. Ajoutez ces lignes dans "scripts" de package.json :
+     "postinstall": "prisma generate",
+     "db:push": "prisma db push",
+     "db:studio": "prisma studio"
+
+4. Dans le terminal, à la racine du projet :
+     npx prisma generate
+     npx prisma db push
+     npm run dev
+
+   (Si prisma se plaint de moteurs manquants : lancez la commande
+    "npm install-scripts approve @prisma/client @prisma/engines prisma"
+    proposée par npm, puis recommencez l'étape 4.)
+
+5. Facultatif : pour récupérer les articles créés avec l'ancienne version
+   (data/posts.json), lancez UNE fois :   node prisma/import-json.mjs
+
+6. Ajoutez à .gitignore :
+     .env
+     prisma/dev.db
+     prisma/dev.db-journal
+
+Fichiers à SUPPRIMER s'ils existent encore :
+   components/FlairBadge.tsx, components/PostCard.tsx,
+   app/create/CreatePostForm.tsx, data/posts.json (après l'import)

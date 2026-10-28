@@ -8,9 +8,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CommentForm } from "@/components/CommentForm";
+import { DeleteButton } from "@/components/DeleteButton";
 import { FlairTag } from "@/components/FlairTag";
 import { Markdown } from "@/components/Markdown";
-import { addView, getPost } from "@/lib/store";
+import { ViewCounter } from "@/components/ViewCounter";
+import { getPost } from "@/lib/store";
 import { extractHeadings, formatDate, plural, regionLabel, timeAgo } from "@/lib/utils";
 import { AVAILABLE_FLAIRS } from "@/types";
 
@@ -30,14 +32,13 @@ export default async function PostPage({ params }: { params: Params }) {
   const post = await getPost(slug);
   if (!post) notFound();
 
-  await addView(slug);
-
   const flairs = AVAILABLE_FLAIRS.filter((f) => post.flairIds.includes(f.id));
   const headings = extractHeadings(post.content);
   const contributors = Array.from(new Set(post.revisions.map((r) => r.author)));
 
   return (
     <article className="article">
+      <ViewCounter slug={post.slug} />
       <nav className="crumbs" aria-label="Fil d'Ariane">
         <Link href="/">Articles</Link>
         <span aria-hidden="true">›</span>
@@ -49,7 +50,7 @@ export default async function PostPage({ params }: { params: Params }) {
       <div className="article__tabs" role="navigation" aria-label="Actions sur l'article">
         <span className="is-on">Article</span>
         <a href="#discussion">Discussion ({post.comments.length})</a>
-        <a href="#historique">Historique</a>
+        <Link href={`/post/${post.slug}/history`}>Historique</Link>
         <Link href={`/post/${post.slug}/edit`} className="article__edit">
           Modifier
         </Link>
@@ -83,14 +84,24 @@ export default async function PostPage({ params }: { params: Params }) {
           <section id="historique" className="section">
             <h2>Historique des modifications</h2>
             <ul className="history">
-              {post.revisions.map((r) => (
+              {post.revisions.slice(0, 5).map((r, i) => (
                 <li key={r.id}>
                   <time dateTime={r.createdAt}>{formatDate(r.createdAt)}</time>
                   <span>{r.author}</span>
                   <span className="muted">{r.summary}</span>
+                  <Link href={`/post/${post.slug}/history/${r.id}`}>
+                    {i === 0 ? "voir (actuelle)" : "voir / rétablir"}
+                  </Link>
                 </li>
               ))}
             </ul>
+            {post.revisions.length > 5 && (
+              <p className="small">
+                <Link href={`/post/${post.slug}/history`}>
+                  Voir les {post.revisions.length} révisions
+                </Link>
+              </p>
+            )}
           </section>
 
           <section id="discussion" className="section">
@@ -105,6 +116,12 @@ export default async function PostPage({ params }: { params: Params }) {
                     <div className="comment__head">
                       <strong>{c.author}</strong>
                       <time dateTime={c.createdAt}>{timeAgo(c.createdAt)}</time>
+                      <span className="comment__actions">
+                        <DeleteButton
+                          url={`/api/posts/${post.slug}/comments/${c.id}`}
+                          warning="Ce commentaire sera supprimé définitivement."
+                        />
+                      </span>
                     </div>
                     <p>{c.content}</p>
                   </li>
@@ -130,11 +147,20 @@ export default async function PostPage({ params }: { params: Params }) {
             <dt>Révisions</dt>
             <dd>{post.revisions.length}</dd>
             <dt>Lectures</dt>
-            <dd>{plural(post.views + 1, "vue", "vues")}</dd>
+            <dd>{plural(post.views, "vue", "vues")}</dd>
           </dl>
           <Link href={`/post/${post.slug}/edit`} className="btn btn--plain btn--block">
             Améliorer cet article
           </Link>
+          <div className="infobox__admin">
+            <DeleteButton
+              url={`/api/posts/${post.slug}`}
+              label="Supprimer l'article"
+              warning="L'article disparaîtra du site. Il reste dans la base de données et peut être récupéré par l'administrateur."
+              redirectTo="/"
+              block
+            />
+          </div>
         </aside>
       </div>
     </article>

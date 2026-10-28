@@ -28,8 +28,8 @@ export async function POST(
   const problem = validateComment(body.content ?? "");
   if (problem) return NextResponse.json({ error: problem }, { status: 400 });
 
-  const post = await addComment(slug, cleanAuthor(body.author), body.content ?? "");
-  if (!post) return NextResponse.json({ error: "Article introuvable." }, { status: 404 });
+  const ok = await addComment(slug, cleanAuthor(body.author), body.content ?? "");
+  if (!ok) return NextResponse.json({ error: "Article introuvable." }, { status: 404 });
 
   return NextResponse.json({ ok: true }, { status: 201 });
 }

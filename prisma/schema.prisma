@@ -1,0 +1,63 @@
+// prisma/schema.prisma — Base de données de Saint-Archive
+//
+// Local : SQLite (un simple fichier, aucune installation).
+// Production : remplacez provider par "postgresql" et DATABASE_URL par
+// l'adresse de votre base (Neon, Supabase, Railway…). Rien d'autre à changer.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  title     String
+  excerpt   String
+  content   String
+  region    String // "quebec" | "france" | "other"
+  flairs    String    @default("") // ",corruption,politique," (voir lib/store.ts)
+  author    String
+  views     Int       @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  deletedAt DateTime? // non nul = supprimé (suppression douce, récupérable)
+
+  comments  Comment[]
+  revisions Revision[]
+
+  @@index([deletedAt, updatedAt])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author    String
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([postId, createdAt])
+}
+
+// Chaque modification enregistre une copie complète de l'article :
+// c'est ce qui permet de comparer deux versions et de rétablir une ancienne.
+model Revision {
+  id        String   @id @default(cuid())
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author    String
+  summary   String
+  title     String
+  excerpt   String
+  content   String
+  region    String
+  flairs    String   @default("")
+  createdAt DateTime @default(now())
+
+  @@index([postId, createdAt])
+}

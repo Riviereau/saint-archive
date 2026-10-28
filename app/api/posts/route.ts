@@ -22,13 +22,7 @@ export async function GET(request: NextRequest) {
     sort: sort === "views" || sort === "comments" ? (sort as SortOption) : "recent",
   });
 
-  // On n'envoie pas le contenu complet dans la liste
-  return NextResponse.json({
-    posts: posts.map(({ content, ...rest }) => {
-      void content;
-      return { ...rest, commentCount: rest.comments.length };
-    }),
-  });
+  return NextResponse.json({ posts });
 }
 
 export async function POST(request: NextRequest) {
@@ -51,6 +45,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Certains champs sont invalides.", errors }, { status: 400 });
   }
 
-  const post = await createPost(body as PostInput, cleanAuthor(body.author));
-  return NextResponse.json({ slug: post.slug }, { status: 201 });
+  const slug = await createPost(body as PostInput, cleanAuthor(body.author));
+  return NextResponse.json({ slug }, { status: 201 });
 }

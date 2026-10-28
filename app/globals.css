@@ -685,6 +685,114 @@ a.tag:hover {
 
 .comment-form { margin-top: 1.5rem; max-width: 560px; }
 
+/* ---------- Suppression, rétablissement, comparaison ---------- */
+
+.linklike {
+  font: inherit;
+  font-size: 0.8rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--link);
+}
+.linklike:hover { text-decoration: underline; }
+.linklike--danger { color: var(--danger); }
+
+.btn--danger {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+.btn--danger:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+  filter: brightness(1.12);
+}
+.btn--danger-plain {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--line);
+}
+.btn--danger-plain:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.confirm {
+  border: 1px solid var(--danger);
+  background: var(--danger-bg);
+  border-radius: 3px;
+  padding: 0.7rem 0.8rem;
+  margin: 0.5rem 0;
+  font-size: 0.88rem;
+}
+.confirm__text { margin-bottom: 0.6rem; }
+.confirm .field { margin-bottom: 0.5rem; }
+.confirm .actions { margin-top: 0.5rem; }
+
+.comment__actions { margin-left: auto; }
+.infobox__admin { margin-top: 0.6rem; }
+
+.section--first { margin-top: 0; }
+
+.revert { max-width: 360px; }
+
+.history--full li { align-items: baseline; }
+.history__links { margin-left: auto; display: flex; gap: 0.6rem; align-items: baseline; }
+
+.changes { margin: 0 0 1rem; }
+.changes > div { margin-bottom: 0.6rem; }
+.changes dt {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.changes dd { margin: 0; }
+.changes del {
+  background: var(--danger-bg);
+  color: var(--danger);
+  text-decoration: line-through;
+}
+.changes ins {
+  background: var(--ok-bg);
+  color: var(--ok);
+  text-decoration: none;
+}
+
+.diff {
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+.diff__line {
+  display: flex;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0 0.6rem 0 0;
+}
+.diff__mark {
+  flex: 0 0 1.6rem;
+  text-align: center;
+  color: var(--muted);
+  user-select: none;
+}
+.diff__line--add { background: var(--ok-bg); }
+.diff__line--add .diff__mark { color: var(--ok); }
+.diff__line--del { background: var(--danger-bg); }
+.diff__line--del .diff__mark { color: var(--danger); }
+.diff__gap {
+  padding: 0.15rem 0.6rem;
+  background: var(--bg-soft);
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
 /* ---------- Pied de page ---------- */
 
 .footer {
